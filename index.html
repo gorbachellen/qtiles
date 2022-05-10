@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Seattle Data - Geog 458 Lab 4</title>
+  <meta charset="utf-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
+  <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
+  <style type="text/css">
+    #basemapslidercontainer {
+      position: absolute;
+      top: 50px;
+      right: 10px;
+      z-index: 1000;
+    }
+
+    #basemapslider{
+      font-size:62.5%;
+      margin: 14px;
+      height: 125px;
+      width:7px;
+    }
+
+    #map{
+       width: 800px;
+       height: 600px
+    }
+  </style>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+  <script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
+  <script>
+  mapboxgl.accessToken =
+              'pk.eyJ1IjoiamFrb2J6aGFvIiwiYSI6ImNpcms2YWsyMzAwMmtmbG5icTFxZ3ZkdncifQ.P9MBej1xacybKcDN_jehvw';
+          let map = new mapboxgl.Map({
+              container: 'map', // container ID
+              style: 'mapbox://styles/mapbox/dark-v10',
+              zoom: 12, // starting zoom
+              center: [-122.31110275758954, 47.629494415110045]
+          });
+   
+          map.on('load', () => { //simplifying the function statement: arrow with brackets to define a function
+
+            map.addSource('basemap-tiles', {
+                'type': 'raster',
+                'tiles': [
+                    'assets/basemap/{foo}/{z}/{x}/{y}.png'
+                ],
+                'tileSize': 256,
+                'attribution': 'Map tiles designed by Ellen Gorbach</a>'
+            });
+
+            map.addSource('environment-tiles', {
+                'type': 'raster',
+                'tiles': [
+                    'assets/environment/{foo}/{z}/{x}/{y}.png'
+                ],
+                'tileSize': 256,
+                'attribution': 'Map tiles designed by Ellen Gorbach</a>'
+            });
+
+            map.addLayer({
+                'id': 'basemap-layer',
+                'type': 'raster',
+                'layout': {
+                    'visibility': 'none'
+                },
+                'source': 'basemap-tiles'
+            });
+
+            map.addLayer({
+                'id': 'environment-layer',
+                'type': 'raster',
+                'layout': {
+                    'visibility': 'none'
+                },
+                'source': 'environment-tiles'
+            });
+
+          });
+
+  </script>
+  </head>
+  <body>
+    <div id="map">
+      <div id="basemapslidercontainer">
+        <div id="basemapslider">
+      </div>
+    </div>
+    </div>
+  </body>
+  </html>
