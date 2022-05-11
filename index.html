@@ -28,8 +28,29 @@
             margin-left: 20px;
             font-family: 'Open Sans', sans-serif;
             font-size: 25pt;
-            color: white
+            color: red;
         }
+
+        .map-overlay {
+            position: absolute;
+            bottom: 40px;
+            right: 0;
+            background: rgba(255, 255, 255, 0.8);
+            border-style: solid;
+            border-width: 1px;
+            border-color: rgba(0, 0, 0, 0.2);
+            margin-left: 20px;
+            font-family: Arial, sans-serif;
+            overflow: auto;
+            border-radius: 3px;
+        }
+
+        #text-description p {
+            font-size:8px;
+            padding-left: 3px;
+            padding-right: 2px;
+        }
+
         /* the style of the layer control menu */
         #menu {
             background: #fff;
@@ -81,8 +102,16 @@
 
 <body>
     <nav id="menu"></nav>
-    <div id="title"> A Geographical Exploration into King County, Washington </div>
     <div id='map'></div>
+    <div id="title"> A Geographical Exploration into King County, Washington </div>
+    <div class='map-overlay' id='features'>
+        <div id='text-description'>
+            <p>Hospital:<a href="https://gis-kingcounty.opendata.arcgis.com/datasets/kingcounty::acute-service-hospitals-in-king-county-hospitals-point/explore?location=47.542492%2C-121.988865%2C10.00"> Acute Service Hospitals in King County </a> </p>
+            <p>Basemap: Modified basemap (Mapbox Studio) </p>
+            <p>BasemapHospital: combined hospital and basemap layers </p>
+            <p>Environment: environment-themed layer (Mapbox Studio)</p>
+        </div>
+    </div>
     <script type="text/javascript">
         mapboxgl.accessToken =
             'pk.eyJ1IjoiamFrb2J6aGFvIiwiYSI6ImNpcms2YWsyMzAwMmtmbG5icTFxZ3ZkdncifQ.P9MBej1xacybKcDN_jehvw';
